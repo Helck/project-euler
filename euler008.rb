@@ -1,7 +1,7 @@
 # coding: utf-8
 # Problem 8 「数字列中の最大の積」
 
-STRINGEULER = <<"GGG"
+STRINGEULER008 = <<"GGG"
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
@@ -26,7 +26,7 @@ GGG
 
 def euler008
     num = Array.new
-    STRINGEULER.gsub(/(\s)/,"").each_char do |x|
+    STRINGEULER008.gsub(/(\s)/,"").each_char do |x|
         num << x.to_i        
     end
     max = 0

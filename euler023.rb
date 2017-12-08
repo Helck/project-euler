@@ -2,6 +2,7 @@
 # Problem 23 「非過剰数和」
 def euler023
     abundant = Array.new
+    abundant_sum = Hash.new
     sum = 0
     (1..28123).each do |m|
         x = 2
@@ -18,21 +19,16 @@ def euler023
         n += 1
         abundant << m if n > m
     end
-
-    (1..28123).each do |m|
-        x = 0
-        flag = true
-        while m >= abundant[x]do
-            n = m - abundant[x]
-            y = 0
-            while n >= abundant[y]do
-                flag = false if n == abundant[y]
-                y += 1
+    (0..abundant.length - 1).each do |m|
+        (m..abundant.length - 1).each do |n|
+            if abundant[m] + abundant[n] <= 28123
+                num = abundant[m] + abundant[n]
+                abundant_sum["#{num}"] = 1
             end
-            x += 1
-            break if flag == false
         end
-        sum += m if flag == true
+    end
+    (1..28123).each do |m|
+        sum += m unless abundant_sum.has_key?("#{m}")
     end
     sum
 end

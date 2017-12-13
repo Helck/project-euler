@@ -1,26 +1,14 @@
 # coding: utf-8
 # Problem 12 「高度整除三角数」
-
+require 'prime'
 def euler012
     num = 0
     n = 1
-    loop do
+    div_num = 0
+    while div_num < 500 do
         num += n
-        count = 0
-        x = num
-        y = 1
-        while y < x do
-            if num % y == 0
-                if ((num / y) == y)
-                    count += 1
-                else
-                    count += 2
-                end
-                x = num / y
-            end
-            y += 1
-        end 
-        break if count >= 500
+        gg = Prime.prime_division(num)
+        div_num = gg.reduce(1){|m,kv| m *= kv[1] + 1 }
         n += 1
     end
     num
